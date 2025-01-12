@@ -6,9 +6,12 @@ import { styles } from "./Style";
 export default function Calculator() {
   const [stringValue, setStringValue] = useState("");
   return (
-    <View>
+    <View style={{ width: "100%" }}>
       <Text>Calculator</Text>
-      <Text style={styles.screenCalculator}>{stringValue}</Text>
+      <View style={styles.screenCalculator}>
+        <Text style={styles.buttonText}>{stringValue}</Text>
+      </View>
+
       <KeyPad setValue={setStringValue} />
     </View>
   );
