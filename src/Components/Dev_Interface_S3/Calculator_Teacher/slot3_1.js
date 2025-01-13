@@ -23,8 +23,9 @@ export default class Calculator extends React.Component {
   operate(oper) {
     switch (oper) {
       case "DEL":
-        let text = this.state.calculationText.split("").pop();
-        this.setState({ calculationResult: text.join("") });
+        let text = this.state.calculationText.split("");
+        text.pop();
+        this.setState({ calculationText: text.join("") });
         break;
       case "=":
         this.setState({
@@ -49,64 +50,26 @@ export default class Calculator extends React.Component {
         <View style={styles.numbers}>
           <View style={styles.buttons}>
             {/* Number 1 */}
-            <View style={styles.numberCol}>
-              {["1", "4", "7", "DEL"].map((item) => {
-                return (
-                  <TouchableOpacity
-                    style={styles.btn}
-                    key={item}
-                    onPress={() => this.handlePress(item)}
-                  >
-                    <Text>{item}</Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-
-            {/* Number 2 */}
-            <View style={styles.numberCol}>
-              {["2", "5", "8", "0"].map((item) => {
-                return (
-                  <TouchableOpacity
-                    style={styles.btn}
-                    key={item}
-                    onPress={() => this.handlePress(item)}
-                  >
-                    <Text>{item}</Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-
-            {/* Number 3 */}
-            <View style={styles.numberCol}>
-              {["3", "6", "9", "="].map((item) => {
-                return (
-                  <TouchableOpacity
-                    style={styles.btn}
-                    key={item}
-                    onPress={() => this.handlePress(item)}
-                  >
-                    <Text>{item}</Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-
-            {/* Operation */}
-            <View style={styles.numberCol}>
-              {["+", "-", "*", "/"].map((item) => {
-                return (
-                  <TouchableOpacity
-                    style={styles.btn}
-                    key={item}
-                    onPress={() => this.handlePress(item)}
-                  >
-                    <Text>{item}</Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
+            {[
+              ["1", "4", "7", "DEL"],
+              ["2", "5", "8", "0"],
+              ["3", "6", "9", "="],
+              ["+", "-", "*", "/"],
+            ].map((arr) => (
+              <View style={styles.numberCol}>
+                {arr.map((item) => {
+                  return (
+                    <TouchableOpacity
+                      style={styles.btn}
+                      key={item}
+                      onPress={() => this.handlePress(item)}
+                    >
+                      <Text>{item}</Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            ))}
           </View>
         </View>
       </View>
@@ -125,12 +88,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-around ",
     alignItems: "flex-end",
     backgroundColor: "green",
+    borderWidth: 1,
+    borderRadius: 10,
   },
   calculation: {
     flex: 1,
     justifyContent: "space-around",
     alignItems: "flex-end",
     backgroundColor: "yellow",
+    borderWidth: 1,
+    borderRadius: 10,
   },
   buttons: {
     flex: 8,
