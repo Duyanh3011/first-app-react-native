@@ -47,30 +47,28 @@ export default class Calculator extends React.Component {
           <Text style={styles.displayText}>{this.state.calculationText}</Text>
         </View>
         {/* Buttons */}
-        <View style={styles.numbers}>
-          <View style={styles.buttons}>
-            {/* Number 1 */}
-            {[
-              ["1", "4", "7", "DEL"],
-              ["2", "5", "8", "0"],
-              ["3", "6", "9", "="],
-              ["+", "-", "*", "/"],
-            ].map((arr) => (
-              <View style={styles.numberCol}>
-                {arr.map((item) => {
-                  return (
-                    <TouchableOpacity
-                      style={styles.btn}
-                      key={item}
-                      onPress={() => this.handlePress(item)}
-                    >
-                      <Text>{item}</Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
-            ))}
-          </View>
+        <View style={styles.buttons}>
+          {/* Number 1 */}
+          {[
+            ["1", "4", "7", "DEL"],
+            ["2", "5", "8", "0"],
+            ["3", "6", "9", "="],
+            ["+", "-", "*", "/"],
+          ].map((arr) => (
+            <View style={styles.numberCol}>
+              {arr.map((item) => {
+                return (
+                  <TouchableOpacity
+                    style={styles.btn}
+                    key={item}
+                    onPress={() => this.handlePress(item)}
+                  >
+                    <Text style={styles.displayText}>{item}</Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          ))}
         </View>
       </View>
     );
@@ -100,18 +98,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   buttons: {
-    flex: 8,
+    flex: 7,
     flexDirection: "row",
     flexWrap: "wrap",
-    backgroundColor: "grey",
-  },
-  numbers: {
-    flex: 3,
     backgroundColor: "#2b2b2b",
-    flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "space-around",
     alignItems: "stretch",
   },
+  // numbers: {
+  //   backgroundColor: "grey",
+  //   flex: 3,
+  //   flexDirection: "row",
+  //   justifyContent: "flex-end",
+  //   alignItems: "stretch",
+  // },
   numberCol: {
     flex: 1,
     flexDirection: "column",
